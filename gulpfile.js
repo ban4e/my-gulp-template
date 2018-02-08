@@ -9,6 +9,10 @@ global.$ = {
 	notify: require('gulp-notify'),
 	sourcemaps: require('gulp-sourcemaps'),
 	mainBowerFiles: require('main-bower-files'),
+	cheerio: require('gulp-cheerio'),
+	GPreplace: require('gulp-replace'),
+	svgSprite: require('gulp-svg-sprite'),
+	svgmin: require('gulp-svgmin'),
 	browserSync: require('browser-sync').create(),
 
 	path: {
@@ -22,11 +26,11 @@ $.path.tasks.forEach(function (taskPath) {
 
 
 $.gulp.task('default', $.gulp.series(
-	$.gulp.parallel('pug', 'stylus', 'script', 'img:dev', 'libs:js', 'libs:css'),
+	$.gulp.parallel('pug', 'stylus', 'script', 'img:dev', 'libs:js', 'libs:css', 'svg'),
 	$.gulp.parallel('watch', 'serve')
 ));
 
 $.gulp.task('build', $.gulp.series(
-	$.gulp.parallel('pug', 'stylus', 'script', 'img:build', 'libs:js', 'libs:css'),
+	$.gulp.parallel('pug', 'stylus', 'script', 'img:build', 'libs:js', 'libs:css', 'svg'),
 	$.gulp.parallel('watch', 'serve')
 ));
